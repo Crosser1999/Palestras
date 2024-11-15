@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luciano - Palestrante</title>
+    <style>
+        /* Estilos principais */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+            overflow: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            transform: scale(0);
+            animation: fadeIn 1s ease-in-out forwards;
+        }
+
+        h1, h2 {
+            color: #007BFF;
+        }
+
+        .section {
+            margin-top: 20px;
+        }
+
+        /* Animação para o fade-in */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Estilo do console */
+        .console {
+            font-family: "Courier New", Courier, monospace;
+            background-color: #333;
+            color: #0f0;
+            padding: 10px;
+            border-radius: 5px;
+            width: 100%;
+            max-width: 500px;
+            height: 200px;
+            white-space: pre-wrap;
+            overflow-y: auto;
+            margin: 20px auto;
+            text-align: left;
+        }
+
+        /* Estilos para os ícones */
+        .info-icon {
+            font-size: 3em;
+            color: #007BFF;
+        }
+
+        .info-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 40px;
+        }
+
+        .info-box {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            width: 20%;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transform: translateY(50px);
+            animation: slideUp 1s ease-out forwards;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        /* Infográficos e indicadores */
+        .infographic-bar {
+            width: 100%;
+            background-color: #ddd;
+            height: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .infographic-bar .fill {
+            height: 100%;
+            background-color: #007BFF;
+            border-radius: 5px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Bem-vindo à minha palestra!</h1>
+        <h2>Luciano - Palestrante</h2>
+        <p>Confira um pouco sobre minha trajetória e experiências.</p>
+
+        <!-- Informações sobre o palestrante -->
+        <div class="info-container">
+            <div class="info-box">
+                <div class="info-icon">🎓</div>
+                <h3>Formação</h3>
+                <p>Graduado em [Sua Área]</p>
+                <div class="infographic-bar">
+                    <div class="fill" style="width: 90%"></div>
+                </div>
+            </div>
+            <div class="info-box">
+                <div class="info-icon">💼</div>
+                <h3>Experiência</h3>
+                <p>[X] anos de experiência</p>
+                <div class="infographic-bar">
+                    <div class="fill" style="width: 80%"></div>
+                </div>
+            </div>
+            <div class="info-box">
+                <div class="info-icon">🏆</div>
+                <h3>Conquistas</h3>
+                <p>[Premiação/Reconhecimento]</p>
+                <div class="infographic-bar">
+                    <div class="fill" style="width: 75%"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Apresentação do Console -->
+        <div class="console" id="console"></div>
+        <button class="button" onclick="iniciarConsole()">Iniciar Código</button>
+    </div>
+
+    <script>
+        // Definindo as variáveis
+        const nome = "Luciano";
+        const numero = "945999163";
+        const bairro = "Bairro do Pantanal";
+
+        // Função que simula a escrita e apagamento do código no console
+        function iniciarConsole() {
+            let consoleElement = document.getElementById("console");
+            let texto = `Nome: ${nome}\nNúmero: ${numero}\nBairro: ${bairro}`;
+            let i = 0;
+            let interval = setInterval(() => {
+                if (i < texto.length) {
+                    consoleElement.textContent += texto.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(interval);
+                    setTimeout(() => apagarTexto(consoleElement), 1000); // Apaga após 1 segundo
+                }
+            }, 100); // Velocidade da digitação (100ms por caractere)
+        }
+
+        // Função que apaga o texto com efeito de "backspace"
+        function apagarTexto(consoleElement) {
+            let texto = consoleElement.textContent;
+            let i = texto.length;
+            let interval = setInterval(() => {
+                if (i > 0) {
+                    consoleElement.textContent = texto.substring(0, i - 1);
+                    i--;
+                } else {
+                    clearInterval(interval);
+                    setTimeout(() => iniciarConsole(), 1000); // Reinicia o loop após 1 segundo
+                }
+            }, 100); // Velocidade do apagamento (100ms por caractere)
+        }
+    </script>
+
+</body>
+</html>
